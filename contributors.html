@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Become a contributor — MO AI</title>
+<meta name="description" content="Join MO AI's verified AI workforce. Free training and certification, fair pay, and real annotation, evaluation and RLHF projects. Create your account.">
+<link rel="canonical" href="https://moannotation.com/contributors.html">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://moannotation.com/contributors.html">
+<meta property="og:site_name" content="MO AI">
+<meta property="og:title" content="Become a contributor — MO AI">
+<meta property="og:description" content="Join MO AI's verified AI workforce. Free training and certification, fair pay, and real annotation, evaluation and RLHF projects. Create your account.">
+<meta property="og:image" content="https://moannotation.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Become a contributor — MO AI">
+<meta name="twitter:description" content="Join MO AI's verified AI workforce. Free training and certification, fair pay, and real annotation, evaluation and RLHF projects. Create your account.">
+<meta name="twitter:image" content="https://moannotation.com/assets/og-image.png">
+<meta name="theme-color" content="#2563EB">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/* ---------- auth ---------- */
+.auth-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start;margin-top:44px}
+.auth-card{background:#fff;border:1px solid var(--border);border-radius:26px;padding:34px 32px;box-shadow:var(--shadow)}
+.auth-tabs{display:flex;gap:8px;background:var(--tint);padding:6px;border-radius:999px;margin-bottom:24px}
+.auth-tabs button{flex:1;border:0;background:transparent;font-family:var(--sora);font-weight:700;font-size:.95rem;
+ color:var(--mute);padding:11px 16px;border-radius:999px;cursor:pointer;transition:all .15s ease}
+.auth-tabs button.active{background:var(--blue);color:#fff;box-shadow:0 6px 16px rgba(37,99,235,.3)}
+.auth-pane{display:none}
+.auth-pane.active{display:block}
+.auth-card h3{font-family:var(--sora);font-weight:800;font-size:1.3rem;margin-bottom:6px}
+.auth-card .sub{color:var(--mute);font-size:.92rem;margin-bottom:22px}
+.auth-note{margin-top:16px;font-size:.84rem;color:var(--mute);text-align:center}
+.auth-note a{color:var(--blue);font-weight:600}
+.pw-wrap{position:relative}
+.pw-wrap button{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:0;
+ color:var(--mute);font-size:.8rem;font-weight:600;cursor:pointer;padding:6px 8px}
+.strength{height:5px;border-radius:3px;background:#E5E7EB;margin-top:8px;overflow:hidden}
+.strength i{display:block;height:100%;width:0;transition:width .25s ease,background .25s ease}
+.benefits{background:linear-gradient(150deg,var(--blue),var(--sky-br));border-radius:26px;color:#fff;padding:36px 34px;position:sticky;top:100px}
+.benefits h3{font-family:var(--sora);font-weight:800;font-size:1.35rem;margin-bottom:18px}
+.benefits ul{list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
+.benefits li{display:flex;gap:12px;font-size:.97rem;color:#EAF5FF}
+.benefits li svg{width:22px;height:22px;flex:none;fill:#fff;margin-top:2px}
+.benefits .box{background:#fff;color:var(--ink);border-radius:16px;padding:16px 18px;font-size:.9rem}
+.benefits .box b{color:var(--blue)}
+
+/* dashboard */
+.dash{display:none}
+.dash.show{display:block}
+.dash-head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.dash-head h3{font-family:var(--sora);font-weight:800;font-size:1.35rem}
+.stage-track{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 26px}
+.stage-track div{flex:1;min-width:96px;background:var(--tint);border:1px solid var(--border);border-radius:14px;
+ padding:12px 10px;text-align:center;font-size:.78rem;color:var(--mute);font-weight:600}
+.stage-track div.done{background:var(--blue);border-color:var(--blue);color:#fff}
+.stage-track div.now{background:#fff;border:2px solid var(--sky);color:var(--blue)}
+.dash-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.dash-grid div{background:var(--tint);border-radius:16px;padding:18px}
+.dash-grid b{display:block;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sky);margin-bottom:6px}
+.dash-grid span{font-size:.98rem;color:var(--ink);font-weight:500}
+.setup-banner{background:#FFFBEB;border:1px solid #FDE68A;color:#92400E;border-radius:16px;padding:16px 18px;font-size:.9rem;margin-bottom:22px}
+.setup-banner b{color:#78350F}
+@media (max-width:960px){.auth-wrap{grid-template-columns:1fr}.benefits{position:static}.dash-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html" aria-label="MO AI home">
+      <svg viewBox="-4 6 108 90" aria-hidden="true">
+        <defs><linearGradient id="g1" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0" stop-color="#1E40AF"/><stop offset=".55" stop-color="#2563EB"/><stop offset="1" stop-color="#38BDF8"/>
+        </linearGradient></defs>
+        <polygon points="16,26 33,26 50,49 67,26 84,26 84,74 71,74 71,45 54,68 46,68 29,45 29,74 16,74" fill="url(#g1)"/>
+        <g stroke="#1E40AF" stroke-width="3.2" stroke-linecap="round">
+          <line x1="50" y1="50" x2="50" y2="22"/><line x1="35" y1="74" x2="30" y2="86"/><line x1="65" y1="74" x2="70" y2="86"/>
+          <line x1="20" y1="74" x2="12" y2="83"/><line x1="80" y1="74" x2="88" y2="83"/>
+          <line x1="16" y1="46" x2="6" y2="46"/><line x1="84" y1="46" x2="94" y2="46"/>
+        </g>
+        <g fill="#fff" stroke="#1E40AF" stroke-width="2.2">
+          <circle cx="28.6" cy="89.4" r="3.6"/><circle cx="71.4" cy="89.4" r="3.6"/><circle cx="9.4" cy="85.8" r="3.6"/>
+          <circle cx="90.6" cy="85.8" r="3.6"/><circle cx="2.8" cy="46" r="3.6"/><circle cx="97.2" cy="46" r="3.6"/>
+        </g>
+        <circle cx="50" cy="16.5" r="4.6" fill="#0EA5E9"/>
+      </svg>
+      <span><span class="mo">MO</span> <span class="ai">AI</span></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#why-join">Why join</a>
+      <a href="#earn">What you earn</a>
+      <a href="#how-to-join">How to join</a>
+      <a href="#faq">FAQ</a>
+      <a href="companies.html">For companies</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <a class="btn btn-blue" href="#account">Create account</a>
+      <button type="button" class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+<main id="content">
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="wrap hero-in">
+    <div>
+      <p class="kicker">For contributors</p>
+      <h1>Earn from real <span class="alt">global AI projects.</span></h1>
+      <p class="lead">Get verified, get trained for free, and join vetted teams working on annotation, model evaluation and RLHF for AI companies. No experience required to start.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-white" href="#account">Create your account</a>
+        <a class="btn btn-ghost" href="#how-to-join">See how joining works</a>
+      </div>
+      <p class="hero-note">Free to join · Free training &amp; certification · Fair, transparent pay</p>
+    </div>
+    <div class="hero-mark" aria-hidden="true">
+      <div class="halo"></div>
+      <svg viewBox="-4 6 108 90">
+        <defs><linearGradient id="g2" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#DBEAFE"/>
+        </linearGradient></defs>
+        <polygon points="16,26 33,26 50,49 67,26 84,26 84,74 71,74 71,45 54,68 46,68 29,45 29,74 16,74" fill="url(#g2)"/>
+        <g stroke="#BAE6FD" stroke-width="3.2" stroke-linecap="round">
+          <line x1="50" y1="50" x2="50" y2="22"/><line x1="35" y1="74" x2="30" y2="86"/><line x1="65" y1="74" x2="70" y2="86"/>
+          <line x1="20" y1="74" x2="12" y2="83"/><line x1="80" y1="74" x2="88" y2="83"/>
+          <line x1="16" y1="46" x2="6" y2="46"/><line x1="84" y1="46" x2="94" y2="46"/>
+        </g>
+        <g fill="#1E40AF" stroke="#BAE6FD" stroke-width="2.2">
+          <circle cx="28.6" cy="89.4" r="3.6"/><circle cx="71.4" cy="89.4" r="3.6"/><circle cx="9.4" cy="85.8" r="3.6"/>
+          <circle cx="90.6" cy="85.8" r="3.6"/><circle cx="2.8" cy="46" r="3.6"/><circle cx="97.2" cy="46" r="3.6"/>
+        </g>
+        <circle class="node-pulse" cx="50" cy="16.5" r="7" fill="rgba(255,255,255,.35)"/>
+        <circle cx="50" cy="16.5" r="4.6" fill="#ffffff"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat reveal"><b>Free</b><span>to join, train and certify</span></div>
+    <div class="stat reveal"><b>48 hrs</b><span>typical reply to applications</span></div>
+    <div class="stat reveal"><b>7–14 days</b><span>application to first task</span></div>
+    <div class="stat reveal"><b>Remote</b><span>work from anywhere</span></div>
+  </div>
+</div>
+
+<!-- ================= WHY JOIN ================= -->
+<section id="why-join">
+  <div class="wrap">
+    <p class="eyebrow reveal">Why join MO AI</p>
+    <h2 class="reveal">A verified route into the AI economy</h2>
+    <p class="section-sub reveal">Anonymous freelance platforms give you tasks. We give you verification, training and a track record that follows you.</p>
+    <div class="grid-3">
+      <div class="card reveal">
+        <div class="chip c-blue"><svg viewBox="0 0 24 24"><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm10.5 2-3.9 3.9-1.6-1.6-1.4 1.4 3 3 5.3-5.3-1.4-1.4zM9 13c-3.3 0-7 1.7-7 4v3h11.5a6.5 6.5 0 0 1-.5-2.5c0-1.4.5-2.8 1.3-3.9C13 13.2 11 13 9 13z"/></svg></div>
+        <h3>You get verified</h3>
+        <p>Identity checks and a skills assessment mean clients know exactly who does their work — which is why we get access to projects that anonymous platforms never see.</p>
+      </div>
+      <div class="card reveal">
+        <div class="chip c-sky"><svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2V17c0 1.7 3.1 3 7 3s7-1.3 7-3v-3.8l-7 3.8-7-3.8z"/></svg></div>
+        <h3>You get trained free</h3>
+        <p>Annotation standards, quality expectations, confidentiality — taught properly, then certified. We never charge for training, at any stage.</p>
+      </div>
+      <div class="card reveal">
+        <div class="chip c-blue"><svg viewBox="0 0 24 24"><path d="M3 17h4v4H3v-4zm7-6h4v10h-4V11zm7-8h4v18h-4V3z"/></svg></div>
+        <h3>You can progress</h3>
+        <p>Consistent accuracy lowers your review rate and opens higher-paying work — RLHF and writing projects sit at our top rate tier.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================= CONTRIBUTORS ================= -->
+<section class="sec" id="earn">
+  <div class="wrap">
+    <p class="eyebrow reveal">For contributors</p>
+    <h2 class="reveal">What you earn, and what you need</h2>
+    <p class="section-sub reveal">Straight answers, because you deserve them before you apply. Joining MO AI is free — we never charge contributors to register, train or work.</p>
+
+    <div class="reveal pay-wrap" style="overflow-x:auto">
+      <table class="pay-table">
+        <thead>
+          <tr><th>Work type</th><th>What it involves</th><th>Typical pay basis</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Text annotation</b></td><td>Labelling, classification, named entity work</td><td>Per item or hourly</td></tr>
+          <tr><td><b>Image &amp; video annotation</b></td><td>Bounding boxes, segmentation, keypoints</td><td>Per item</td></tr>
+          <tr><td><b>AI response evaluation</b></td><td>Rating and ranking model outputs</td><td>Hourly</td></tr>
+          <tr><td><b>RLHF &amp; writing</b></td><td>Comparing responses, writing ideal answers</td><td>Hourly — highest rate tier</td></tr>
+          <tr><td><b>Content moderation</b></td><td>Policy-based review of user content</td><td>Hourly</td></tr>
+        </tbody>
+      </table>
+      <p class="pay-note">Rates vary by project, client budget, complexity and your certification level — we confirm the exact rate in writing before you accept any task, never after. Payment is made within the timeframe stated in your project agreement, to your Nigerian bank account or preferred payout method.</p>
+    </div>
+
+    <h3 style="font-family:var(--sora);font-weight:700;font-size:1.15rem;margin-top:44px">What you need to apply</h3>
+    <div class="req">
+      <div class="reveal"><b>A laptop</b><span>Most projects require a computer, not a phone</span></div>
+      <div class="reveal"><b>Stable internet</b><span>Enough to work through a full session reliably</span></div>
+      <div class="reveal"><b>Strong written English</b><span>Additional languages are an advantage</span></div>
+      <div class="reveal"><b>18 or older</b><span>With valid ID for verification</span></div>
+    </div>
+    <p class="section-sub reveal" style="margin-top:22px">No prior annotation experience is required for entry-level projects — our training covers it. What we can't teach is attention to detail and honesty about uncertainty. Bring those.</p>
+    <div style="margin-top:26px;display:flex;gap:14px;flex-wrap:wrap"><a class="btn btn-blue reveal" href="#start-tasker">Apply now</a><a class="btn reveal" href="#how-to-join" style="background:#fff;color:var(--blue);border:2px solid var(--border)">See how joining works</a></div>
+  </div>
+</section>
+
+
+<!-- ================= ACCOUNT ================= -->
+<section class="sec" id="account">
+  <div class="wrap">
+    <p class="eyebrow reveal">Your account</p>
+    <h2 class="reveal">Create an account or sign in</h2>
+    <p class="section-sub reveal">Your account is how you apply, track your stage, and pick up project invitations. It is free, and we never ask contributors for money.</p>
+
+    <div class="auth-wrap">
+      <div class="auth-card reveal">
+        <div id="setupBanner" class="setup-banner" style="display:none">
+          <b>Accounts are not switched on yet.</b> Use the application form below and we'll reply by email — your place in the queue is exactly the same.
+        </div>
+
+        <div class="auth-tabs" id="authTabs" role="tablist">
+          <button type="button" class="active" id="tabSignup" role="tab" aria-selected="true" aria-controls="paneSignup">Create account</button>
+          <button type="button" id="tabLogin" role="tab" aria-selected="false" aria-controls="paneLogin">Sign in</button>
+        </div>
+
+        <!-- SIGN UP -->
+        <div class="auth-pane active" id="paneSignup" role="tabpanel" aria-labelledby="tabSignup">
+          <h3>Create your account</h3>
+          <p class="sub">Takes about a minute. Free, always.</p>
+          <form id="signupForm" novalidate>
+            <div class="hp" aria-hidden="true"><label for="sWebsite">Leave empty</label><input id="sWebsite" name="website" tabindex="-1" autocomplete="off"></div>
+            <div class="field"><label for="sName">Full name</label><input id="sName" name="name" required autocomplete="name" placeholder=" "></div>
+            <div class="field"><label for="sEmail">Email</label><input id="sEmail" name="email" type="email" inputmode="email" required autocomplete="email" placeholder=" "><div class="hint">We reply here — check spam too.</div></div>
+            <div class="field"><label for="sPass">Password</label>
+              <div class="pw-wrap">
+                <input id="sPass" name="password" type="password" required autocomplete="new-password" placeholder=" ">
+                <button type="button" id="sPassToggle" aria-label="Show password">Show</button>
+              </div>
+              <div class="strength" aria-hidden="true"><i id="sBar"></i></div>
+              <div class="hint">At least 8 characters.</div>
+            </div>
+            <div class="field"><label for="sCity">City &amp; country</label><input id="sCity" name="city" required placeholder="e.g. Abuja, Nigeria"></div>
+            <div class="field"><label for="sSkill">Main skill area</label>
+              <select id="sSkill" name="skill" required>
+                <option value="" selected disabled>Select your strongest area</option>
+                <option>Text annotation / writing</option>
+                <option>Image / video annotation</option>
+                <option>AI response evaluation / RLHF</option>
+                <option>Coding / technical annotation</option>
+                <option>Content moderation</option>
+                <option>New to this — willing to learn</option>
+              </select>
+            </div>
+            <div class="field"><label for="sDevice">Device you'll work on</label>
+              <select id="sDevice" name="device" required>
+                <option value="" selected disabled>Select your device</option>
+                <option>Laptop / desktop computer</option>
+                <option>Tablet only</option>
+                <option>Phone only</option>
+              </select>
+            </div>
+            <div class="field"><label for="sHours">Hours available per week</label>
+              <select id="sHours" name="hours" required>
+                <option value="" selected disabled>Select availability</option>
+                <option>Under 10 hours</option>
+                <option>10–20 hours</option>
+                <option>20–40 hours</option>
+                <option>Full time (40+)</option>
+              </select>
+            </div>
+            <div class="field"><label for="sExp">Experience (optional)</label><textarea id="sExp" name="exp" placeholder="Platforms you've worked on, languages you speak…"></textarea></div>
+            <div class="consent"><input type="checkbox" id="sConsent" required><label for="sConsent">I confirm I am 18 or older and agree that MO AI may contact me about my application.</label></div>
+            <button class="btn btn-blue" type="submit" id="sSubmit">Create account</button>
+            <div class="form-msg" id="sMsg" role="status" aria-live="polite"></div>
+          </form>
+          <p class="auth-note">Prefer not to create an account? <a href="https://wa.me/2349010671692" target="_blank" rel="noopener">Apply on WhatsApp</a></p>
+        </div>
+
+        <!-- SIGN IN -->
+        <div class="auth-pane" id="paneLogin" role="tabpanel" aria-labelledby="tabLogin">
+          <h3>Welcome back</h3>
+          <p class="sub">Sign in to check your application stage.</p>
+          <form id="loginForm" novalidate>
+            <div class="field"><label for="lEmail">Email</label><input id="lEmail" name="email" type="email" inputmode="email" required autocomplete="email" placeholder=" "></div>
+            <div class="field"><label for="lPass">Password</label>
+              <div class="pw-wrap">
+                <input id="lPass" name="password" type="password" required autocomplete="current-password" placeholder=" ">
+                <button type="button" id="lPassToggle" aria-label="Show password">Show</button>
+              </div>
+            </div>
+            <button class="btn btn-blue" type="submit" id="lSubmit">Sign in</button>
+            <div class="form-msg" id="lMsg" role="status" aria-live="polite"></div>
+          </form>
+          <p class="auth-note"><a href="#" id="forgotLink">Forgotten your password?</a></p>
+        </div>
+
+        <!-- DASHBOARD -->
+        <div class="dash" id="dash">
+          <div class="dash-head">
+            <h3>Your application</h3>
+            <button type="button" class="btn" id="signOut" style="background:var(--tint);color:var(--blue);padding:9px 18px;font-size:.85rem">Sign out</button>
+          </div>
+          <p class="sub" id="dashHello"></p>
+          <div class="stage-track" id="stageTrack" aria-label="Application progress"></div>
+          <div class="dash-grid">
+            <div><b>Stage</b><span id="dStage">Applied</span></div>
+            <div><b>Skill area</b><span id="dSkill">—</span></div>
+            <div><b>Availability</b><span id="dHours">—</span></div>
+            <div><b>Applied on</b><span id="dDate">—</span></div>
+          </div>
+          <p class="auth-note" style="margin-top:20px">Stages update as we review your application. Questions? <a href="mailto:hello@moannotation.com">hello@moannotation.com</a></p>
+        </div>
+      </div>
+
+      <aside class="benefits reveal">
+        <h3>What your account gives you</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>One application — no repeating your details over chat</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>See exactly which stage you're at, any time</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>Project invitations sent to your registered email</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>Your certification and track record stay on file</li>
+        </ul>
+        <div class="box"><b>We will never</b> ask you to pay a registration, training or equipment fee — and never ask for your BVN, bank password or an OTP.</div>
+      </aside>
+    </div>
+  </div>
+</section>
+<!-- ================= SIGNUP JOURNEY ================= -->
+<section id="how-to-join">
+  <div class="wrap">
+    <p class="eyebrow reveal">How to join</p>
+    <h2 class="reveal">The signup process, step by step</h2>
+    <p class="section-sub reveal">From application to your first paid task is typically 7–14 days, depending on how quickly you complete each stage and whether a matching project is open. Nothing here costs you money at any point.</p>
+
+    <div class="journey">
+      <div class="jstep reveal">
+        <div class="jhead"><div class="jnum">1</div><div><h3>Submit your application</h3><div class="when">5 minutes</div></div></div>
+        <p>Fill in the application form on this site. It opens a WhatsApp chat with your details already written out, so our onboarding team receives a complete application rather than a blank "hello".</p>
+        <ul>
+          <li>Full name, email, and city</li>
+          <li>Your strongest skill area</li>
+          <li>Any relevant experience (optional)</li>
+          <li>The device and internet you'll be working with</li>
+        </ul>
+        <div class="need"><b>Have ready:</b> a working email address you check regularly.</div>
+      </div>
+
+      <div class="jstep reveal">
+        <div class="jhead"><div class="jnum">2</div><div><h3>Eligibility screening</h3><div class="when">Within 48 hours</div></div></div>
+        <p>We review your application against the basic requirements and reply either way. If we can't take you on right now, we'll tell you plainly and say whether it's worth reapplying later.</p>
+        <ul>
+          <li>18 years or older</li>
+          <li>Access to a laptop or desktop computer</li>
+          <li>Internet stable enough for a full working session</li>
+          <li>Strong written English (other languages are a bonus)</li>
+        </ul>
+        <div class="need"><b>Outcome:</b> invitation to identity verification, or an honest no.</div>
+      </div>
+
+      <div class="jstep reveal">
+        <div class="jhead"><div class="jnum">3</div><div><h3>Identity verification</h3><div class="when">1–2 days</div></div></div>
+        <p>Our clients trust us because we know exactly who does their work. This step is what makes that true — and it's why our contributors get access to projects that anonymous freelance platforms never see.</p>
+        <ul>
+          <li>A valid government-issued ID (NIN slip, driver's licence, voter's card or passport)</li>
+          <li>A clear selfie for matching against the ID</li>
+          <li>Confirmation of your full legal name and date of birth</li>
+        </ul>
+        <div class="need"><b>We never ask for:</b> your BVN, bank password, card PIN, or any payment from you.</div>
+      </div>
+
+      <div class="jstep reveal">
+        <div class="jhead"><div class="jnum">4</div><div><h3>Skills assessment</h3><div class="when">45–90 minutes</div></div></div>
+        <p>A practical test in your chosen area — not a quiz. You'll do a small set of real-style tasks and we score them against a known answer key. This sets your starting level and the projects you can be matched to.</p>
+        <ul>
+          <li>Text, image/video, evaluation, or coding track depending on your application</li>
+          <li>Includes deliberate edge cases — flagging uncertainty scores better than guessing</li>
+          <li>You may retake once after a waiting period if you don't pass first time</li>
+        </ul>
+        <div class="need"><b>Tip:</b> read the instructions twice. Most failures are instruction-reading failures, not skill failures.</div>
+      </div>
+
+      <div class="jstep reveal">
+        <div class="jhead"><div class="jnum">5</div><div><h3>Training &amp; certification</h3><div class="when">2–4 hours, free</div></div></div>
+        <p>Free MO AI training covering how professional annotation actually works. Complete it and you hold an MO AI certification that stays with you across every project you take with us.</p>
+        <ul>
+          <li>Annotation and evaluation standards</li>
+          <li>How our four-layer quality assurance works and what's expected of you</li>
+          <li>Confidentiality, data handling, and client IP obligations</li>
+          <li>How to read guidelines and when to flag instead of guess</li>
+        </ul>
+        <div class="need"><b>Cost to you:</b> nothing. Training is never charged for.</div>
+      </div>
+
+      <div class="jstep reveal">
+        <div class="jhead"><div class="jnum">6</div><div><h3>Sign your agreements</h3><div class="when">15 minutes</div></div></div>
+        <p>Before you touch client data, we put the relationship in writing — protecting the client's information and your position equally.</p>
+        <ul>
+          <li>Non-disclosure agreement covering all project data</li>
+          <li>Contributor agreement setting out conduct, quality standards and payment terms</li>
+          <li>Your payout details recorded (account name and number only)</li>
+        </ul>
+        <div class="need"><b>Read before signing.</b> Ask us anything you're unsure about — a good question is never a problem.</div>
+      </div>
+
+      <div class="jstep reveal">
+        <div class="jhead"><div class="jnum">7</div><div><h3>Project matching &amp; calibration</h3><div class="when">When a project opens</div></div></div>
+        <p>You join the verified pool. When a project fits your skills and languages, you're invited to it — starting with a calibration round where the whole team labels the same items and reviews disagreements together.</p>
+        <ul>
+          <li>You see the exact pay rate in writing before you accept anything</li>
+          <li>Project guidelines and a live walkthrough are provided</li>
+          <li>Calibration confirms you're aligned before live work begins</li>
+        </ul>
+        <div class="need"><b>Honest note:</b> matching depends on live client demand. We won't promise work we don't have.</div>
+      </div>
+
+      <div class="jstep reveal">
+        <div class="jhead"><div class="jnum">8</div><div><h3>Work, review, get paid</h3><div class="when">Ongoing</div></div></div>
+        <p>You work through your assigned batches. Your output is reviewed — heavily at first, then lightly once you've proven accuracy — and you're paid on the terms in your project agreement.</p>
+        <ul>
+          <li>20% of your work sampled while new, dropping to 5% once proven</li>
+          <li>Feedback comes with the reason, so you can actually improve</li>
+          <li>Consistent accuracy earns priority access to higher-paying projects</li>
+        </ul>
+        <div class="need"><b>Progression:</b> proven contributors move into RLHF and writing work — our highest rate tier.</div>
+      </div>
+    </div>
+
+    <div class="warnbox reveal">
+      <h3>How to spot a fake "MO AI" recruiter</h3>
+      <ul>
+        <li>We will never ask you to pay a registration, training, certification or equipment fee</li>
+        <li>We will never ask for your BVN, bank password, card PIN or an OTP</li>
+        <li>We will never guarantee a fixed monthly income before you've been matched to a project</li>
+        <li>We will never recruit through a random group chat asking you to pay to "unlock tasks"</li>
+      </ul>
+      <p style="margin-top:14px;font-size:.93rem;color:#7F1D1D">Our only official channels are this website, WhatsApp <b>0901 067 1692</b>, and <b>hello@moannotation.com</b>. If anything claiming to be MO AI asks you for money, it isn't us — please report it to us.</p>
+    </div>
+
+    <div style="margin-top:34px"><a class="btn btn-blue reveal" href="#start-tasker">Start your application</a></div>
+  </div>
+</section>
+
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="wrap">
+    <p class="eyebrow reveal">FAQ</p>
+    <h2 class="reveal">Questions contributors ask</h2>
+    <div class="faq" id="faqTasker" role="tabpanel" aria-labelledby="faqT" >
+      <details open><summary>Is it free to join?</summary>
+        <p>Yes, completely. We never charge you to register, train, get certified or work. Anyone asking you to pay a fee to join MO AI is not us — report it to us immediately.</p></details>
+      <details><summary>How much will I earn?</summary>
+        <p>It depends on the project, the work type and your certification level. RLHF and writing work pays the highest rates; entry-level annotation pays less while you build a track record. What we commit to: you see the exact rate in writing before you accept a task, never after. If we can't tell you the rate up front, don't take the work.</p></details>
+      <details><summary>When and how do I get paid?</summary>
+        <p>Payment terms are stated in your project agreement before you start, and paid to your bank account or preferred payout method. Payment is tied to accepted work — work that fails quality review may need correction before it's approved, which is why the training and guidelines matter.</p></details>
+      <details><summary>Do I need experience?</summary>
+        <p>Not for entry-level projects. Our training covers annotation standards, quality expectations and confidentiality. What we can't train is attention to detail and the willingness to flag an item you're unsure about instead of guessing. Those two habits are what separate contributors who last from those who don't.</p></details>
+      <details><summary>Can I work from my phone?</summary>
+        <p>Most projects need a laptop or desktop — annotation tools are demanding and accuracy suffers on a small screen. A few evaluation projects can work on tablet. If you don't have a computer yet, apply anyway and we'll tell you honestly whether anything currently fits.</p></details>
+      <details><summary>Is this full-time? Can I do it alongside another job?</summary>
+        <p>Most contributors work flexibly around other commitments. Projects have deadlines and quality standards, so reliability matters — but hours are generally yours to arrange within the project window.</p></details>
+      <details><summary>How long does signup take from start to first task?</summary>
+        <p>Typically 7–14 days: application (5 minutes), screening reply within 48 hours, identity verification (1–2 days), skills assessment (45–90 minutes), free training (2–4 hours), then agreements and project matching. The variable is project availability — we won't invent work that doesn't exist just to fill the pipeline.</p></details>
+      <details><summary>What if I fail the skills assessment?</summary>
+        <p>You can retake it once after a waiting period. Most first-time failures come from not reading the instructions carefully rather than lack of ability, so review the guidelines properly before your second attempt. If you don't pass the second time we'll tell you honestly and suggest which track might suit you better.</p></details>
+      <details><summary>How do I know this isn't a scam?</summary>
+        <p>Fair question, and you should ask it of everyone. We're a registered Nigerian company with a named founder, a public website, and a physical base in Abuja. We never ask you for money, and we never ask for your bank password or BVN — only the account details needed to pay you. Every legitimate communication from us comes from this website, our official WhatsApp number, or hello@moannotation.com.</p></details>
+    </div>
+  </div>
+
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <p class="eyebrow reveal">Contact</p>
+    <h2 class="reveal">Still have a question?</h2>
+    <p class="section-sub reveal">Onboarding questions get answered fastest on WhatsApp. Anything about your account or payments, email us.</p>
+    <div class="contact-grid">
+      <div class="card reveal">
+        <h3 style="margin-bottom:8px">WhatsApp</h3>
+        <a href="https://wa.me/2349010671692" target="_blank" rel="noopener">0901 067 1692</a>
+        <p style="font-size:.86rem;color:var(--mute);margin-top:8px">Applications and onboarding</p>
+      </div>
+      <div class="card reveal">
+        <h3 style="margin-bottom:8px">Email</h3>
+        <a href="mailto:hello@moannotation.com">hello@moannotation.com</a>
+        <p style="font-size:.86rem;color:var(--mute);margin-top:8px">Accounts, payments, anything formal</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="#top"><span><span class="mo">MO</span> <span class="ai">AI</span></span></a>
+    <span>Powering AI with verified human intelligence.</span>
+    <span style="display:flex;gap:18px;flex-wrap:wrap">
+      <a href="#security">Security</a>
+      <a href="#engagement">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://instagram.com/moannotation" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://x.com/MOAnnotationAg" target="_blank" rel="noopener">X / Twitter</a>
+      <a href="mailto:hello@moannotation.com">Email</a>
+    </span>
+  </div>
+  <div class="wrap" style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(191,219,254,.25);font-size:.84rem;color:#93C5FD">
+    MOANNOTATION LIMITED, trading as MO AI · Abuja, FCT, Nigeria · hello@moannotation.com · © 2026
+  </div>
+</footer>
+<script>
+const btn=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
+if(btn){btn.addEventListener('click',()=>{const open=links.classList.toggle('open');btn.setAttribute('aria-expanded',open)});
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');btn.setAttribute('aria-expanded','false')}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&links.classList.contains('open')){links.classList.remove('open');btn.setAttribute('aria-expanded','false');btn.focus();}});}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<script type="module">
+// =====================================================================
+// MO AI — contributor accounts
+// Paste your Supabase project URL and anon key below (see SETUP.md).
+// Until you do, signup falls back to emailing us and login stays disabled,
+// so nobody is ever stuck.
+// =====================================================================
+const SUPABASE_URL = "";
+const SUPABASE_ANON_KEY = "";
+const FORM_ENDPOINT = "https://formspree.io/f/xeajawzq";                       // Formspree fallback for signups
+const WA = 'https://wa.me/2349010671692?text=';
+const STAGES = ["Applied","Screened","Verified","Assessed","Trained","Signed","Active"];
+
+let sb = null;
+if(SUPABASE_URL && SUPABASE_ANON_KEY){
+  const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2');
+  sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}else{
+  document.getElementById('setupBanner').style.display = 'block';
+  document.getElementById('tabLogin').disabled = true;
+  document.getElementById('tabLogin').style.opacity = .5;
+  document.getElementById('tabLogin').title = 'Accounts are not enabled yet';
+}
+
+const $ = id => document.getElementById(id);
+function setMsg(el, text, ok){ el.textContent = text; el.className = 'form-msg show ' + (ok ? 'ok' : 'err'); }
+
+// ---------- tabs ----------
+function showPane(signup){
+  $('tabSignup').classList.toggle('active', signup);
+  $('tabLogin').classList.toggle('active', !signup);
+  $('tabSignup').setAttribute('aria-selected', signup);
+  $('tabLogin').setAttribute('aria-selected', !signup);
+  $('paneSignup').classList.toggle('active', signup);
+  $('paneLogin').classList.toggle('active', !signup);
+}
+$('tabSignup').addEventListener('click', () => showPane(true));
+$('tabLogin').addEventListener('click', () => { if(!$('tabLogin').disabled) showPane(false); });
+
+// ---------- password helpers ----------
+function wirePw(inputId, btnId){
+  const i = $(inputId), b = $(btnId);
+  b.addEventListener('click', () => {
+    const show = i.type === 'password';
+    i.type = show ? 'text' : 'password';
+    b.textContent = show ? 'Hide' : 'Show';
+    b.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+  });
+}
+wirePw('sPass','sPassToggle'); wirePw('lPass','lPassToggle');
+
+$('sPass').addEventListener('input', e => {
+  const v = e.target.value;
+  let score = 0;
+  if(v.length >= 8) score++;
+  if(/[A-Z]/.test(v) && /[a-z]/.test(v)) score++;
+  if(/\d/.test(v)) score++;
+  if(/[^A-Za-z0-9]/.test(v)) score++;
+  const bar = $('sBar');
+  const pct = [0,30,55,80,100][score];
+  const col = ['#E5E7EB','#F87171','#FBBF24','#34D399','#10B981'][score];
+  bar.style.width = pct + '%'; bar.style.background = col;
+});
+
+// ---------- validation ----------
+function validate(f, msg){
+  if(f.website && f.website.value) return false;
+  const missing = [...f.querySelectorAll('[required]')].filter(el =>
+    el.type === 'checkbox' ? !el.checked : !el.value.trim());
+  if(missing.length){ setMsg(msg, 'Please complete the highlighted fields.', false); missing[0].focus(); return false; }
+  const email = f.querySelector('input[type=email]');
+  if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())){
+    setMsg(msg, 'That email address looks incomplete — please check it.', false); email.focus(); return false;
+  }
+  const pw = f.querySelector('input[type=password]');
+  if(pw && pw.value.length < 8){
+    setMsg(msg, 'Your password needs at least 8 characters.', false); pw.focus(); return false;
+  }
+  return true;
+}
+
+// ---------- dashboard ----------
+function renderStages(current){
+  const track = $('stageTrack');
+  track.innerHTML = '';
+  const idx = STAGES.indexOf(current);
+  STAGES.forEach((s, i) => {
+    const d = document.createElement('div');
+    d.textContent = s;
+    if(i < idx) d.className = 'done';
+    if(i === idx) d.className = 'now';
+    track.appendChild(d);
+  });
+}
+function showDash(profile){
+  $('authTabs').style.display = 'none';
+  $('paneSignup').classList.remove('active');
+  $('paneLogin').classList.remove('active');
+  $('dash').classList.add('show');
+  $('dashHello').textContent = profile.name ? `Signed in as ${profile.name}` : '';
+  $('dStage').textContent = profile.stage || 'Applied';
+  $('dSkill').textContent = profile.skill || '—';
+  $('dHours').textContent = profile.hours || '—';
+  $('dDate').textContent = profile.created_at ? new Date(profile.created_at).toLocaleDateString() : '—';
+  renderStages(profile.stage || 'Applied');
+}
+function hideDash(){
+  $('dash').classList.remove('show');
+  $('authTabs').style.display = 'flex';
+  showPane(true);
+}
+
+async function loadProfile(user){
+  let profile = { name: user.user_metadata?.name, stage: 'Applied',
+                  skill: user.user_metadata?.skill, hours: user.user_metadata?.hours,
+                  created_at: user.created_at };
+  try{
+    const { data } = await sb.from('contributors').select('*').eq('id', user.id).single();
+    if(data) profile = { ...profile, ...data };
+  }catch(e){ /* table may not exist yet — metadata is enough */ }
+  showDash(profile);
+}
+
+// ---------- signup ----------
+$('signupForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = e.target, msg = $('sMsg'), btn = $('sSubmit');
+  if(f.website && f.website.value) return;
+  if(!validate(f, msg)) return;
+
+  const payload = {
+    name: f.name.value.trim(), email: f.email.value.trim(), city: f.city.value.trim(),
+    skill: f.skill.value, device: f.device.value, hours: f.hours.value,
+    experience: f.exp.value.trim() || '-'
+  };
+
+  // --- no backend yet: email us instead ---
+  if(!sb){
+    if(FORM_ENDPOINT){
+      btn.disabled = true; btn.textContent = 'Sending…';
+      try{
+        const res = await fetch(FORM_ENDPOINT, { method:'POST',
+          headers:{'Accept':'application/json','Content-Type':'application/json'},
+          body: JSON.stringify({ _subject: 'New contributor application — ' + payload.name, _replyto: payload.email, type:'Contributor application', ...payload }) });
+        if(!res.ok) throw 0;
+        f.reset();
+        setMsg(msg, "Application received. We review every one and reply within 48 hours — check your email, including spam.", true);
+      }catch(err){
+        setMsg(msg, "Couldn't send that. Please email hello@moannotation.com or message us on WhatsApp.", false);
+      }
+      btn.disabled = false; btn.textContent = 'Create account';
+    }else{
+      const t = `Hello MO AI! I want to become a contributor.\n\nName: ${payload.name}\nEmail: ${payload.email}\nLocation: ${payload.city}\nSkill area: ${payload.skill}\nDevice: ${payload.device}\nAvailability: ${payload.hours}\nExperience: ${payload.experience}`;
+      window.open(WA + encodeURIComponent(t), '_blank', 'noopener');
+      setMsg(msg, 'Opening WhatsApp with your details…', true);
+    }
+    return;
+  }
+
+  // --- real account ---
+  btn.disabled = true; btn.textContent = 'Creating…';
+  const { data, error } = await sb.auth.signUp({
+    email: payload.email, password: f.password.value,
+    options: { data: { name: payload.name, city: payload.city, skill: payload.skill,
+                       device: payload.device, hours: payload.hours, experience: payload.experience } }
+  });
+  if(error){
+    setMsg(msg, error.message.includes('already') ? 'That email already has an account — try signing in.' : error.message, false);
+    btn.disabled = false; btn.textContent = 'Create account'; return;
+  }
+  try{ await sb.from('contributors').insert({ id: data.user.id, stage: 'Applied', ...payload }); }catch(e){}
+  f.reset();
+  setMsg(msg, 'Account created. Check your email to confirm it, then sign in to track your application.', true);
+  btn.disabled = false; btn.textContent = 'Create account';
+});
+
+// ---------- login ----------
+$('loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = e.target, msg = $('lMsg'), btn = $('lSubmit');
+  if(!validate(f, msg)) return;
+  if(!sb){ setMsg(msg, 'Accounts are not enabled yet — please use the application form.', false); return; }
+  btn.disabled = true; btn.textContent = 'Signing in…';
+  const { data, error } = await sb.auth.signInWithPassword({ email: f.email.value.trim(), password: f.password.value });
+  btn.disabled = false; btn.textContent = 'Sign in';
+  if(error){ setMsg(msg, 'That email and password did not match. Try again, or reset your password.', false); return; }
+  msg.className = 'form-msg';
+  loadProfile(data.user);
+});
+
+$('forgotLink').addEventListener('click', async e => {
+  e.preventDefault();
+  const msg = $('lMsg');
+  const email = $('lEmail').value.trim();
+  if(!sb){ setMsg(msg, 'Accounts are not enabled yet — email hello@moannotation.com.', false); return; }
+  if(!email){ setMsg(msg, 'Enter your email above first, then tap this link.', false); $('lEmail').focus(); return; }
+  await sb.auth.resetPasswordForEmail(email, { redirectTo: location.href });
+  setMsg(msg, 'If that email has an account, a reset link is on its way.', true);
+});
+
+$('signOut').addEventListener('click', async () => { if(sb) await sb.auth.signOut(); hideDash(); });
+
+// restore session on load
+if(sb){
+  const { data } = await sb.auth.getSession();
+  if(data.session) loadProfile(data.session.user);
+}
+</script>
+</body>
+</html>
